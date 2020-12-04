@@ -5,6 +5,9 @@ let description = document.getElementById('description')
 let carbs = document.getElementById('carbs')
 let protein = document.getElementById('protein')
 let calories = document.getElementById('calories')
+let totalCarbs = document.getElementById('totalCarbs')
+let totalProtein = document.getElementById('totalProtein')
+let totalCalories = document.getElementById('totalCalories')
 
 let list = []
 
@@ -18,6 +21,7 @@ const validateInputs = () => {
     addToList()
     console.log(list)
     cleanForm()
+    updateTotals()
   }
 }
 
@@ -30,6 +34,18 @@ const addToList = () => {
   }
 
   list.push(newElement)
+}
+
+const updateTotals = () => {
+  let carbs = 0, protein = 0, calories = 0
+  list.map((item) => {
+    carbs += item.carbs,
+    protein += item.protein,
+    calories += item.calories
+  })
+  totalCarbs.textContent = carbs
+  totalProtein.textContent = protein
+  totalCalories.textContent = calories
 }
 
 const cleanForm = () => {
