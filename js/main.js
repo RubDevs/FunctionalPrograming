@@ -6,6 +6,8 @@ let carbs = document.getElementById('carbs')
 let protein = document.getElementById('protein')
 let calories = document.getElementById('calories')
 
+let list = []
+
 const validateInputs = () => {
   description.value ? '' : description.classList.add('is-invalid')
   carbs.value ? '' : carbs.classList.add('is-invalid')
@@ -13,8 +15,28 @@ const validateInputs = () => {
   calories.value ? '' : calories.classList.add('is-invalid')
 
   if(description.value && calories.value && carbs.value && protein.value){
-    console.log('Ok')
+    addToList()
+    console.log(list)
+    cleanForm()
   }
+}
+
+const addToList = () => {
+  const newElement = {
+    description: description.value,
+    carbs: parseInt(carbs.value),
+    protein: parseInt(protein.value),
+    calories: parseInt(calories.value)
+  }
+
+  list.push(newElement)
+}
+
+const cleanForm = () => {
+  description.value = ''
+  carbs.value = ''
+  protein.value = ''
+  calories.value = ''
 }
 
 description.addEventListener('keypress',()=>{
